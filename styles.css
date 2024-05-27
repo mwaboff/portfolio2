@@ -17,17 +17,15 @@
     --accent-color-1: #F8A83F;
     --dark-text: #212121;
     --secondary-dark-text: #757575;
-    --light-text: #adadad;
+    --light-text: #bdbdbd;
     --bright-light-text: #e5e5e5;
-    --secondary-light-text: #757575;
+    --secondary-light-text: #959595;
     --secondary-light-text-translucent: rgba(117, 117, 117, 0.2);
     --divider-color: #BDBDBD;
     --background-color-dark: #333333;
     --background-color: #050019;
-    /* --background-color: #131314; */
     --background-color-1: #D6D6D6;
     --background-color-2: #1f2937;
-    /* --background-color-2: #1b1b1b; */
   
     --border-radius: 3px;
     --border-width: 1px;
@@ -42,10 +40,61 @@
   
   
     --transition-duration: 250ms;
+    --fadein-duration: 500ms;
 
     --experience-row-margin: 30px;
     --experience-description-margin: 10px;
+
+    --btn-horizontal-padding: 25px;
   }
+
+  @media screen and (max-width: 768px) {
+    :root { --global-width: 525px; }
+  }
+
+  @media screen and (max-width: 650px) {
+    :root { 
+        --global-width: 480px; 
+        --font-size__title: 20px;
+        --font-size__sub-title: 18px;
+        --font-size__main: 16px;
+        --font-size__small: 14px;
+        --avatar-size: 105px;
+    }
+  }
+  
+  @media screen and (max-width: 540px) {
+    :root { 
+        --global-width: 400px; 
+        --font-size__title: 20px;
+        --font-size__sub-title: 18px;
+        --font-size__main: 16px;
+        --font-size__small: 14px;
+        --avatar-size: 85px;
+        --btn-horizontal-padding: 15px;
+    }
+  }
+
+  @media screen and (max-width: 460px) {
+    :root { 
+        --global-width: 400px; 
+        --font-size__title: 18px;
+        --font-size__sub-title: 16px;
+        --font-size__main: 14px;
+        --font-size__small: 12px;
+    }
+  }
+
+  @media screen and (max-width: 430px) {
+    :root { 
+        --global-width: 300px;
+        --btn-horizontal-padding: 10px;
+    }
+  }
+  
+  
+  
+  
 
 * {
     box-sizing: border-box;
@@ -55,10 +104,10 @@
 }
 
 body {
+    animation: fadeIn var(--fadein-duration);
     background: var(--background-color);
     color: var(--light-text);
     font: var(--font-size__main) var(--font-style__standard);
-    /* text-align: center; */
     line-height: var(--line-height);
 }
 
@@ -72,6 +121,16 @@ body {
 
 .global-width { 
     width: var(--global-width); 
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0.25;
+    }
+
+    to {
+        opacity: 1;
+    }
 }
 
 /* Font */
@@ -142,7 +201,7 @@ h2 {
 
 .experience-project {
     background: var(--background-color-2);
-    padding: 25px 15px;
+    padding: 25px 25px;
     border-radius: 6px;
 }
 
@@ -237,7 +296,7 @@ h2 {
     border-radius: var(--border-radius);
     color: inherit;
     display: inline-block;
-    padding: 3px 25px;
+    padding: 3px var(--btn-horizontal-padding);
     text-align: center;
     text-decoration: none;
     /* text-transform: uppercase; */
@@ -278,35 +337,34 @@ h2 {
     padding: 0px 0px 0px 2px;
 }
 
-/* SVGs */
-.experience-link::after {
-    content: url("./images/svg/upright-arrow.svg");
-    display: inline-block;
-    width: var(--font-size__main);
-    height: var(--font-size__main);
-    margin-left: 2px;
-    filter: invert(100%) sepia(8%) saturate(234%) hue-rotate(245deg) brightness(116%) contrast(80%);
+.contact-entry {
+    margin-bottom: var(--experience-description-margin);
 }
 
-/* .experience-link::before {
-    content: url("./images/svg/link.svg");
+.contact-entry:hover {
+    color: var(--accent-color);
+}
+
+
+/* SVGs */
+.svg-logo {
     display: inline-block;
     width: var(--font-size__main);
     height: var(--font-size__main);
     margin-right: 3px;
+    margin-bottom: -3px;
+    fill: white;
     filter: invert(100%) sepia(8%) saturate(234%) hue-rotate(245deg) brightness(116%) contrast(80%);
-} */
-
-.experience-link:hover::after {
-    filter: invert(86%) sepia(19%) saturate(1059%) hue-rotate(328deg) brightness(101%) contrast(101%);
 }
-
 
 mail-svg {
     content: url("./images/svg/mail.svg");
-    display: inline-block;
-    width: var(--font-size__main);
-    height: var(--font-size__main);
-    margin-right: 3px;
-    filter: invert(100%) sepia(8%) saturate(234%) hue-rotate(245deg) brightness(116%) contrast(80%);
+}
+
+linkedin-svg {
+    content: url("./images/svg/linkedin.svg");
+}
+
+github-svg {
+    content: url("./images/svg/github.svg");
 }

@@ -11,7 +11,7 @@
     <meta property="og:title" content="Michael Aboff - Software Engineer" />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://aboff.com" />
-    <meta property="og:image" content="https://aboff.com/images/headshot_thumb_minimized.webp" />
+    <meta property="og:image" content="https://aboff.com/images/headshot_thumb.webp" />
     <meta property="og:description" content="Michael Aboff is a customer focused software engineer specializing in technical communication and distilling complicated problems into simple solutions." />
     <meta name="theme-color" content="#FF0000">
 
@@ -24,13 +24,13 @@
         <div class="global-width">
             <div class="grid">
                 <div class="grid__item-1 grid__vertical_center grid__horizontal_center">
-                    <img src="images/headshot_thumb_minimized.webp" class="avatar rounded-image" alt="Image of Michael"/>
+                    <img src="images/headshot_thumb.webp" class="avatar rounded-image" alt="Image of Michael"/>
                 </div>
                 <div class="grid__item-2-long grid__horizontal_center">
                     <h1>Michael Aboff</h1>
-                    <p><span class="emphasized">Customer Focused</span> Software Engineer</p>
+                    <p><span class="emphasized">Customer Focused</span> <span>Software Engineer</span></p>
                     <div class="btn-group">
-                        <a href="#projects" class="btn">Contact</a>
+                        <a href="#contact" class="btn">Contact</a>
                         <a href="media/michael_aboff_resume.pdf" class="btn" target="_blank">Resume</a>
                     </div> 
                 </div>
@@ -46,7 +46,7 @@
         </div>
     </section>
 
-    <section class="section flex flex__center-full flex__column" role="contentinfo" aria-label="Work Experience">
+    <section id="experience" class="section flex flex__center-full flex__column" role="contentinfo" aria-label="Work Experience">
         <div class="global-width">
             <h2 class="section-title">Work Experience</h2>
             <div class="experiences">
@@ -88,23 +88,10 @@
         </div>
     </section>
 
-    <section class="section flex flex__center-full flex__column" role="contentinfo" aria-label="Select Projects">
+    <section id="projects" class="section flex flex__center-full flex__column" role="contentinfo" aria-label="Select Projects">
         <div class="global-width">
             <h2 class="section-title">Select Projects</h2>
             <div class="experiences">
-                <div class="grid">
-                    <div class="grid__item_full experience-project">
-                        <p class="experience-title"><a class="experience-link" href="https://monkeyscripts.org">Monkeyscripts.org</a></p>
-                        <p class="experience-description">A full-stack user script hosting site.</p>
-                        <ul class="experience-list">
-                            <li><span>Built an item-based collaborative-filter recommendation system using a Pearson Correlation algorithm.</span></li>
-                            <li><span>Developed an interactive user onboarding method using latest research on learning techniques.</span></li>
-                            <li><span>Designed and implemented a responsive design from scratch.</span></li>
-                        </ul>
-                        <p class="experience-tech">PHP &bull; Laravel &bull; Javascript &bull; React &bull; MySQL &bull; HTML5 &bull; CSS &bull; Bootstrap &bull; Figma</p>    
-                    </div>
-                </div>
-
                 <div class="grid">
                     <div class="grid__item_full experience-project">
                         <p class="experience-title">MonkeyScripts</p>
@@ -114,7 +101,7 @@
                             <li><span>Developed interactive user onboarding method using latest research on learning techniques.</span></li>
                             <li><span>Designed and implemented a responsive design from scratch.</span></li>
                         </ul>
-                        <p class="experience-tech">PHP &bull; Laravel &bull; Javascript &bull; React &bull; MySQL &bull; HTML5 &bull; CSS &bull; Bootstrap &bull; Figma</p>
+                        <p class="experience-tech">PHP &bull; Laravel &bull; Javascript &bull; React &bull; MySQL &bull; CSS &bull; Bootstrap &bull; Figma</p>
                         <div class="btn-group">
                             <a href="https://monkeyscripts.org" class="btn" target="_blank">Live Site</a>
                             <a href="https://github.com/mwaboff/monkeyscripts" class="btn" target="_blank">Code</a>
@@ -122,15 +109,50 @@
                         </div>     
                     </div>
                 </div>
+
+                <div class="grid">
+                    <div class="grid__item_full experience-project">
+                        <p class="experience-title">BoffMVC</p>
+                        <p class="experience-description">A PHP MVC framework from scratch.</p>
+                        <ul class="experience-list">
+                            <li><span>Built a custom routing, model, view, and controller system.</span></li>
+                            <li><span>Created a MySQL manager to connect models with databases.</span></li>
+                            <li><span>Added a custom image manager for on-the-fly resizing.</span></li>
+                        </ul>
+                        <p class="experience-tech">PHP &bull; MySQL</p>
+                        <div class="btn-group">
+                            <a href="https://github.com/mwaboff/BoffMVC" class="btn" target="_blank">Code</a>
+                            <a href="#" class="btn" target="_blank">Case Study</a>
+                        </div>     
+                    </div>
+                </div>
+
+                <div class="grid">
+                    <div class="grid__item_full experience-project">
+                        <p class="experience-title">HF Enhancement Suite</p>
+                        <p class="experience-description">A cross-browser extension for a popular forum.</p>
+                        <ul class="experience-list">
+                            <li><span>Grew a passionate community of over 5000 users.</span></li>
+                            <li><span>Generated over $4000 with a freemium sales model.</span></li>
+                            <li><span>Added over 20 customer requested features.</span></li>
+                        </ul>
+                        <p class="experience-tech">Javascript</p>
+                        <div class="btn-group">
+                            <a href="https://github.com/mwaboff/HF-Enhancement-Suite" class="btn" target="_blank">Code</a>
+                            <a href="#" class="btn" target="_blank">Case Study</a>
+                        </div>     
+                    </div>
+                </div>
+                
             </div>
         </div>
     </section>
 
-    <section class="section flex flex__center-full flex__column" role="contentinfo" aria-label="Education Experience">
+    <section id="education" class="section flex flex__center-full flex__column" role="contentinfo" aria-label="Education Experience">
         <div class="global-width">
             <h2 class="section-title">Education</h2>
             <div class="experiences">
-                <div class="grid timeline__date-box">
+                <!-- <div class="grid timeline__date-box">
                     <div class="grid__item-1">
                         <span class="timeline__bullet">&bull;</span>
                         <span class="dates"><i>in progress</i></span>
@@ -139,7 +161,7 @@
                         <p class="experience-title">Georgia Institute of Technology</p>
                         <p class="experience-description">M.S. Computer Science - Machine Learning</p>
                     </div>
-                </div>
+                </div> -->
 
                 <div class="grid timeline__date-box">
                     <div class="grid__item-1">
@@ -175,17 +197,28 @@
         </div>
     </section>
 
-    <section class="section flex flex__center-full flex__column" role="contentinfo" aria-label="Contact Me">
+    <section id="contact" class="section flex flex__center-full flex__column" role="contentinfo" aria-label="Contact Me">
         <div class="global-width">
             <h2 class="section-title">Contact</h2>
-            <mail-svg class="hoverable-svg"></mail-svg> <a href="mailto:michael@aboff.com" class="contact-link">michael@aboff.com</a></span>
+            <div class="contact-entry">
+                <mail-svg class="svg-logo"></mail-svg>
+                <a href="mailto:michael@aboff.com" class="contact-link" target="_blank">michael@aboff.com</a>
+            </div>
+            <div class="contact-entry">
+                <linkedin-svg class="svg-logo"></linkedin-svg>
+                <a href="https://www.linkedin.com/in/mwaboff/" class="contact-link" target="_blank">@mwaboff</a>
+            </div>
+            <div class="contact-entry">
+                <github-svg class="svg-logo"></github-svg>
+                <a href="https://github.com/mwaboff" class="contact-link" target="_blank">@mwaboff</a>
+            </div>
         </div>
     </section>
 
 </div>
 
     
-    <script src="scripts.js"></script>
+    <!-- <script src="scripts.js"></script> -->
 </body>
 
 </html>
