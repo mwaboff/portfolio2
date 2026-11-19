@@ -215,8 +215,9 @@
         }
 
         .eyebrow {
+            --marker-size: 8px;
             display: flex;
-            align-items: center;
+            align-items: baseline;
             gap: 8px;
             color: var(--green);
             font-size: 12px;
@@ -225,10 +226,16 @@
             text-transform: uppercase;
         }
 
-        .eyebrow::before {
+        /* Square markers sit on the text baseline, then are raised so their middle lines up
+           with the middle of the capital letters (Manrope capitals are 0.72em tall). */
+        .eyebrow::before,
+        .card__bar::before {
             content: "";
-            width: 8px;
-            height: 8px;
+            flex: none;
+            position: relative;
+            top: calc((var(--marker-size) - 0.72em) / 2);
+            width: var(--marker-size);
+            height: var(--marker-size);
             background: currentColor;
         }
 
@@ -330,24 +337,17 @@
         }
 
         .card__bar {
+            --marker-size: 7px;
             display: flex;
-            align-items: center;
+            align-items: baseline;
             gap: 10px;
-            height: 28px;
             padding: 0 10px;
             background: var(--accent);
             border-bottom: 1px solid var(--ink-color);
             color: var(--dark-text);
             font-size: 12px;
             font-weight: 700;
-        }
-
-        .card__bar::before {
-            content: "";
-            flex: none;
-            width: 7px;
-            height: 7px;
-            background: currentColor;
+            line-height: 27px; /* plus the 1px border makes a 28px bar */
         }
 
         .card__body {
