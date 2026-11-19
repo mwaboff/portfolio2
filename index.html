@@ -26,7 +26,7 @@
             --inset-color: #120f0c;
             --ink-color: #070504;
             --divider-color: #413c38;
-            --btn-border-color: #67625d;
+            --btn-border-color: #75706a;
 
             --text: #e9e4da;
             --secondary-text: #bbb7af;
@@ -51,12 +51,13 @@
 
         html {
             scroll-behavior: smooth;
+            scroll-padding-top: 88px; /* clears the sticky header on anchor jumps */
         }
 
         body {
             background: var(--background-color);
             color: var(--text);
-            font: 500 16px/1.6 var(--font-style);
+            font: 500 1rem/1.6 var(--font-style);
         }
 
         a {
@@ -73,8 +74,46 @@
             color: var(--dark-text);
         }
 
-        section[id] {
-            scroll-margin-top: 80px;
+        :focus-visible {
+            outline: 2px solid var(--amber);
+            outline-offset: 3px;
+        }
+
+        .contact :focus-visible {
+            outline-color: var(--ink-color);
+        }
+
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            overflow: hidden;
+            clip-path: inset(50%);
+            white-space: nowrap;
+        }
+
+        .skip-link {
+            position: absolute;
+            top: -100px;
+            left: 16px;
+            z-index: 10;
+            padding: 8px 14px;
+            background: var(--amber);
+            border: 1px solid var(--ink-color);
+            color: var(--dark-text);
+            font-weight: 700;
+        }
+
+        .skip-link:focus {
+            top: 12px;
+        }
+
+        main:focus {
+            outline: none; /* focused only programmatically, by the skip link */
+        }
+
+        .skip-link:hover {
+            color: var(--dark-text);
         }
 
         .global-width {
@@ -118,7 +157,7 @@
             display: flex;
             flex-wrap: wrap;
             gap: 0 22px;
-            font-size: 14px;
+            font-size: 0.875rem;
             font-weight: 600;
         }
 
@@ -129,6 +168,17 @@
 
         .nav a:hover {
             color: var(--text);
+        }
+
+        /* On short screens (landscape phones, heavy zoom) the sticky header would cover too much */
+        @media (max-height: 500px) {
+            html {
+                scroll-padding-top: 0;
+            }
+
+            .header {
+                position: static;
+            }
         }
 
         /* Key caps logo */
@@ -187,7 +237,15 @@
             gap: 28px;
         }
 
+        .card-grid--projects {
+            grid-template-columns: repeat(auto-fit, minmax(min(100%, 380px), 1fr));
+        }
+
         @media screen and (max-width: 640px) {
+            html {
+                scroll-padding-top: 140px; /* the header wraps to two rows here */
+            }
+
             .split {
                 grid-template-columns: 1fr;
             }
@@ -199,19 +257,18 @@
 
         /* Font */
         h1 {
-            font-size: clamp(44px, 8vw, 76px);
+            font-size: clamp(2.75rem, 8vw, 4.5rem);
             font-weight: 800;
             line-height: 1;
             letter-spacing: -0.035em;
         }
 
         .section-title {
-            color: var(--muted-text);
-            font-size: 13px;
-            font-weight: 700;
-            letter-spacing: .08em;
-            text-transform: uppercase;
-            margin-bottom: 28px;
+            font-size: 1.5rem;
+            font-weight: 800;
+            letter-spacing: -0.015em;
+            line-height: 1.2;
+            margin-bottom: 24px;
         }
 
         .eyebrow {
@@ -220,10 +277,8 @@
             align-items: baseline;
             gap: 8px;
             color: var(--green);
-            font-size: 12px;
+            font-size: 1rem;
             font-weight: 700;
-            letter-spacing: .08em;
-            text-transform: uppercase;
         }
 
         /* Square markers sit on the text baseline, then are raised so their middle lines up
@@ -255,7 +310,7 @@
 
         .hero-intro {
             color: var(--secondary-text);
-            font-size: 18px;
+            font-size: 1.3125rem;
             max-width: 30em;
         }
 
@@ -276,7 +331,7 @@
 
         /* About */
         .about-text {
-            font-size: 20px;
+            font-size: 1.125rem;
             line-height: 1.55;
         }
 
@@ -292,12 +347,12 @@
 
         .dates {
             color: var(--accent);
-            font-size: 14px;
+            font-size: 0.875rem;
             font-weight: 700;
         }
 
         .experience-title {
-            font-size: 20px;
+            font-size: 1.125rem;
             font-weight: 700;
             letter-spacing: -0.01em;
         }
@@ -312,6 +367,13 @@
             margin: 10px 0;
         }
 
+        .experience-promotion {
+            color: var(--muted-text);
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-top: 2px;
+        }
+
         .tags {
             display: flex;
             flex-wrap: wrap;
@@ -322,7 +384,7 @@
         .tag {
             border: 1px solid var(--accent);
             color: var(--accent);
-            font-size: 12px;
+            font-size: 0.75rem;
             font-weight: 600;
             padding: 1px 8px;
         }
@@ -345,9 +407,9 @@
             background: var(--accent);
             border-bottom: 1px solid var(--ink-color);
             color: var(--dark-text);
-            font-size: 12px;
+            font-size: 1rem;
             font-weight: 700;
-            line-height: 27px; /* plus the 1px border makes a 28px bar */
+            line-height: calc(1.75rem - 1px); /* plus the 1px border makes a 28px bar at default text size */
         }
 
         .card__body {
@@ -363,7 +425,7 @@
         }
 
         .card__title {
-            font-size: 18px;
+            font-size: 1.125rem;
             font-weight: 700;
             line-height: 1.3;
         }
@@ -373,24 +435,32 @@
             display: flex;
             flex-direction: column;
             gap: 6px;
-            font-size: 14px;
+            font-size: 1rem;
             padding-left: 18px;
         }
 
-        .experience-tech {
+        .tech-list {
+            display: flex;
+            flex-wrap: wrap;
             color: var(--muted-text);
-            font-size: 12px;
+            font-size: 0.875rem;
             font-weight: 600;
+            list-style: none;
+        }
+
+        .tech-list li:not(:last-child)::after {
+            content: ",";
+            margin-right: .4em;
         }
 
         .card__links {
             display: flex;
             flex-wrap: wrap;
-            gap: 16px;
+            gap: 4px 12px;
             margin-top: auto;
             padding-top: 12px;
             border-top: 1px solid var(--divider-color);
-            font-size: 14px;
+            font-size: 0.875rem;
             font-weight: 700;
         }
 
@@ -404,16 +474,8 @@
             border: 1px solid var(--divider-color);
         }
 
-        .school .dates {
-            font-size: 13px;
-        }
-
-        .school .experience-title {
-            font-size: 17px;
-        }
-
         .school .experience-description {
-            font-size: 14px;
+            font-size: 0.875rem;
             margin: 0;
         }
 
@@ -431,17 +493,25 @@
             color: var(--dark-text);
         }
 
+        @media screen and (max-width: 640px) {
+            .contact {
+                padding: 24px;
+            }
+        }
+
         .contact .section-title {
             color: var(--dark-text);
-            margin-bottom: 8px;
+            font-size: 1.125rem;
+            margin-bottom: 4px;
         }
 
         .contact-email {
             color: var(--dark-text);
-            font-size: clamp(26px, 5vw, 40px);
+            font-size: clamp(1.25rem, 6vw, 2.25rem);
             font-weight: 800;
             letter-spacing: -0.025em;
             line-height: 1.1;
+            overflow-wrap: anywhere;
         }
 
         .contact-email:hover {
@@ -450,11 +520,11 @@
         }
 
         .contact .btn {
-            height: 40px;
+            min-height: 40px;
             padding: 0 14px;
             background: var(--background-color);
             color: var(--text);
-            font-size: 14px;
+            font-size: 0.875rem;
         }
 
         .contact .btn:hover {
@@ -476,11 +546,12 @@
         .btn {
             display: flex;
             align-items: center;
-            height: 44px;
+            gap: .3em;
+            min-height: 44px;
             padding: 0 20px;
             border: 1px solid var(--btn-border-color);
             color: var(--text);
-            font-size: 15px;
+            font-size: 1rem;
             font-weight: 700;
             transition: border-color var(--transition-duration), box-shadow 150ms, transform 150ms;
         }
@@ -528,9 +599,10 @@
 </head>
 
 <body>
+<a href="#top" class="skip-link">Skip to content</a>
 <header class="header">
     <div class="global-width">
-        <a href="#top" class="logo" aria-label="Michael Aboff, back to top">
+        <a href="#top" class="logo" aria-label="MWA, Michael Aboff, back to top">
             <svg width="82" height="24" viewBox="0 0 112 34" aria-hidden="true">
                 <g class="keycap">
                     <rect class="keycap__shadow" x="4" y="4" width="30" height="30" />
@@ -565,19 +637,19 @@
     </div>
 </header>
 
-<main id="top" class="main global-width">
+<main id="top" class="main global-width" tabindex="-1">
     <section class="hero">
         <div class="hero_text">
-            <p class="eyebrow">Customer Focused Senior Software Engineer</p>
+            <p class="eyebrow">Customer-focused senior software engineer</p>
             <h1>Michael Aboff</h1>
             <p class="hero-intro">An expert at taking complex technical issues and breaking them down into simple and concise solutions.</p>
             <div class="btn-group">
                 <a href="#contact" class="btn btn-primary">Contact</a>
-                <a href="media/michael_aboff_resume.pdf" class="btn" target="_blank">Resume ↗</a>
+                <a href="media/michael_aboff_resume.pdf" class="btn" target="_blank" rel="noopener">Resume <span aria-hidden="true">↗</span></a>
             </div>
         </div>
         <div class="card avatar-card accent-blue">
-            <div class="card__bar">headshot.avif</div>
+            <div class="card__bar" aria-hidden="true">headshot.avif</div>
             <div class="card__body">
                 <img src="data:image/avif;base64,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" class="avatar" width="300" height="300" alt="Michael Aboff" />
             </div>
@@ -585,23 +657,24 @@
     </section>
 
     <section id="about" class="split">
-        <h2 class="section-title">About Me</h2>
-        <p class="about-text">An expert at taking complex technical issues and breaking them down into simple and concise solutions, I have worked with software and information technology since 2009. When not working, I spend my time as a baker, flutist, gamer, and dog dad.</p>
+        <h2 class="section-title">About me</h2>
+        <p class="about-text">I have worked with software and information technology since 2009. When not working, I spend my time as a baker, flutist, gamer, and dog dad.</p>
     </section>
 
     <section id="experience">
-        <h2 class="section-title">Work Experience</h2>
+        <h2 class="section-title">Work experience</h2>
         <div class="experiences">
             <div class="experience split accent-amber">
-                <p class="dates">2021 – <em>present</em></p>
+                <p class="dates">2021 – present</p>
                 <div>
-                    <h3 class="experience-title">Full-Stack Software Engineer @ <a href="https://www.capitalone.com/" target="_blank">Capital One</a></h3>
-                    <p class="experience-description">Builds large scale apps that process millions of transactions per hour to protect our customers.</p>
-                    <ul class="tags">
+                    <h3 class="experience-title">Senior Software Engineer @ <a href="https://www.capitalone.com/" target="_blank" rel="noopener">Capital One</a></h3>
+                    <p class="experience-promotion">Promoted from Software Engineer in 2026</p>
+                    <p class="experience-description">Builds large-scale apps that process millions of transactions per hour to protect our customers.</p>
+                    <ul class="tags" role="list">
                         <li class="tag">Java</li>
                         <li class="tag">Spring Boot</li>
                         <li class="tag">Python</li>
-                        <li class="tag">Typescript</li>
+                        <li class="tag">TypeScript</li>
                         <li class="tag">Angular</li>
                         <li class="tag">MySQL</li>
                         <li class="tag">AWS</li>
@@ -611,13 +684,13 @@
             <div class="experience split accent-green">
                 <p class="dates">2018 – 2021</p>
                 <div>
-                    <h3 class="experience-title">Senior Product Support Engineer @ <a href="https://www.sevone.com" target="_blank">SevOne</a></h3>
-                    <p class="experience-description">Provided award winning support, coordinated cross-team war rooms to save over $4 million in sales.</p>
-                    <ul class="tags">
+                    <h3 class="experience-title">Senior Product Support Engineer @ <a href="https://www.sevone.com" target="_blank" rel="noopener">SevOne</a></h3>
+                    <p class="experience-description">Provided award-winning support and coordinated cross-team war rooms to save over $4 million in sales.</p>
+                    <ul class="tags" role="list">
                         <li class="tag">PHP</li>
                         <li class="tag">SQL</li>
                         <li class="tag">Bash</li>
-                        <li class="tag">Javascript</li>
+                        <li class="tag">JavaScript</li>
                     </ul>
                 </div>
             </div>
@@ -626,10 +699,10 @@
                 <div>
                     <h3 class="experience-title">Freelance Programmer</h3>
                     <p class="experience-description">Built websites, designs, scripts, game mods, and communities for thousands of customers.</p>
-                    <ul class="tags">
+                    <ul class="tags" role="list">
                         <li class="tag">Java</li>
                         <li class="tag">Python</li>
-                        <li class="tag">Javascript</li>
+                        <li class="tag">JavaScript</li>
                         <li class="tag">CSS</li>
                     </ul>
                 </div>
@@ -638,9 +711,61 @@
     </section>
 
     <section id="projects">
-        <h2 class="section-title">Select Projects</h2>
-        <div class="card-grid">
+        <h2 class="section-title">Selected projects</h2>
+        <div class="card-grid card-grid--projects">
             <article class="card accent-amber">
+                <h3 class="card__bar">Oh Sheet</h3>
+                <div class="card__body">
+                    <p class="card__title">A companion app for the Daggerheart tabletop RPG.</p>
+                    <ul class="experience-list">
+                        <li>Built rules engine managing complex character sheet management with full undo.</li>
+                        <li>Ranked full-text search with player permission guardrails.</li>
+                        <li>Idea to final product using agentic development best practices.</li>
+                    </ul>
+                    <ul class="tech-list" role="list" aria-label="Built with">
+                        <li>Angular</li>
+                        <li>TypeScript</li>
+                        <li>Tailwind</li>
+                        <li>Java</li>
+                        <li>Spring Boot</li>
+                        <li>PostgreSQL</li>
+                        <li>Docker</li>
+                        <li>Claude Code</li>
+                    </ul>
+                    <div class="card__links">
+                        <a href="https://ohsheet.aboff.com/" target="_blank" rel="noopener">Live site<span class="sr-only"> for Oh Sheet</span> <span aria-hidden="true">↗</span></a>
+                        <a href="https://github.com/mwaboff/dawn" target="_blank" rel="noopener">Frontend<span class="sr-only"> for Oh Sheet</span> <span aria-hidden="true">↗</span></a>
+                        <a href="https://github.com/mwaboff/core" target="_blank" rel="noopener">Backend<span class="sr-only"> for Oh Sheet</span> <span aria-hidden="true">↗</span></a>
+                    </div>
+                </div>
+            </article>
+
+            <article class="card accent-green">
+                <h3 class="card__bar">Slabyrinth</h3>
+                <div class="card__body">
+                    <p class="card__title">An AI dungeon designer for TaleSpire.</p>
+                    <ul class="experience-list">
+                        <li>AI chat harness that enables users to quickly design and build dynamic 2D and 3D TTRPG maps by simply describing what they want.</li>
+                        <li>Reverse-engineered TaleSpire's binary asset format.</li>
+                        <li>CI/CD with GitHub Actions to build and release for Windows and Linux.</li>
+                    </ul>
+                    <ul class="tech-list" role="list" aria-label="Built with">
+                        <li>TypeScript</li>
+                        <li>Electron</li>
+                        <li>React</li>
+                        <li>Claude API</li>
+                        <li>Vitest</li>
+                        <li>Playwright</li>
+                        <li>Claude Code</li>
+                    </ul>
+                    <div class="card__links">
+                        <a href="https://slabyrinth.aboff.com/" target="_blank" rel="noopener">Live site<span class="sr-only"> for Slabyrinth</span> <span aria-hidden="true">↗</span></a>
+                        <a href="https://github.com/mwaboff/slabyrinth" target="_blank" rel="noopener">Code<span class="sr-only"> for Slabyrinth</span> <span aria-hidden="true">↗</span></a>
+                    </div>
+                </div>
+            </article>
+
+            <article class="card accent-blue">
                 <h3 class="card__bar">MonkeyScripts</h3>
                 <div class="card__body">
                     <p class="card__title">A full-stack user script hosting site.</p>
@@ -649,16 +774,25 @@
                         <li>Developed interactive user onboarding method using latest research on learning techniques.</li>
                         <li>Designed and implemented a responsive design from scratch.</li>
                     </ul>
-                    <p class="experience-tech">PHP &bull; Laravel &bull; Javascript &bull; React &bull; MySQL &bull; CSS &bull; Bootstrap &bull; Figma</p>
+                    <ul class="tech-list" role="list" aria-label="Built with">
+                        <li>PHP</li>
+                        <li>Laravel</li>
+                        <li>JavaScript</li>
+                        <li>React</li>
+                        <li>MySQL</li>
+                        <li>CSS</li>
+                        <li>Bootstrap</li>
+                        <li>Figma</li>
+                    </ul>
                     <div class="card__links">
-                        <a href="https://monkeyscripts.org" target="_blank">Live Site ↗</a>
-                        <a href="https://github.com/mwaboff/monkeyscripts" target="_blank">Code ↗</a>
-                        <a href="https://blog.aboff.com/p/monkeyscriptsorg-case-study" target="_blank">Case Study ↗</a>
+                        <a href="https://monkeyscripts.org" target="_blank" rel="noopener">Live site<span class="sr-only"> for MonkeyScripts</span> <span aria-hidden="true">↗</span></a>
+                        <a href="https://github.com/mwaboff/monkeyscripts" target="_blank" rel="noopener">Code<span class="sr-only"> for MonkeyScripts</span> <span aria-hidden="true">↗</span></a>
+                        <a href="https://blog.aboff.com/p/monkeyscriptsorg-case-study" target="_blank" rel="noopener">Case study<span class="sr-only"> for MonkeyScripts</span> <span aria-hidden="true">↗</span></a>
                     </div>
                 </div>
             </article>
 
-            <article class="card accent-green">
+            <article class="card accent-rose">
                 <h3 class="card__bar">BoffMVC</h3>
                 <div class="card__body">
                     <p class="card__title">A PHP MVC framework from scratch.</p>
@@ -667,15 +801,18 @@
                         <li>Created a MySQL manager to connect models with databases.</li>
                         <li>Added a custom image manager for on-the-fly resizing.</li>
                     </ul>
-                    <p class="experience-tech">PHP &bull; MySQL</p>
+                    <ul class="tech-list" role="list" aria-label="Built with">
+                        <li>PHP</li>
+                        <li>MySQL</li>
+                    </ul>
                     <div class="card__links">
-                        <a href="https://github.com/mwaboff/BoffMVC" target="_blank">Code ↗</a>
-                        <a href="https://blog.aboff.com/p/boffmvc" target="_blank">Case Study ↗</a>
+                        <a href="https://github.com/mwaboff/BoffMVC" target="_blank" rel="noopener">Code<span class="sr-only"> for BoffMVC</span> <span aria-hidden="true">↗</span></a>
+                        <a href="https://blog.aboff.com/p/boffmvc" target="_blank" rel="noopener">Case study<span class="sr-only"> for BoffMVC</span> <span aria-hidden="true">↗</span></a>
                     </div>
                 </div>
             </article>
 
-            <article class="card accent-blue">
+            <article class="card accent-amber">
                 <h3 class="card__bar">HF Enhancement Suite</h3>
                 <div class="card__body">
                     <p class="card__title">A cross-browser extension for a popular forum.</p>
@@ -684,10 +821,12 @@
                         <li>Generated over $4000 with a freemium sales model.</li>
                         <li>Added over 20 customer requested features.</li>
                     </ul>
-                    <p class="experience-tech">Javascript</p>
+                    <ul class="tech-list" role="list" aria-label="Built with">
+                        <li>JavaScript</li>
+                    </ul>
                     <div class="card__links">
-                        <a href="https://github.com/mwaboff/HF-Enhancement-Suite" target="_blank">Code ↗</a>
-                        <a href="https://blog.aboff.com/p/hf-enhancement-suite-case-study" target="_blank">Case Study ↗</a>
+                        <a href="https://github.com/mwaboff/HF-Enhancement-Suite" target="_blank" rel="noopener">Code<span class="sr-only"> for HF Enhancement Suite</span> <span aria-hidden="true">↗</span></a>
+                        <a href="https://blog.aboff.com/p/hf-enhancement-suite-case-study" target="_blank" rel="noopener">Case study<span class="sr-only"> for HF Enhancement Suite</span> <span aria-hidden="true">↗</span></a>
                     </div>
                 </div>
             </article>
@@ -721,8 +860,8 @@
             <a href="mailto:michael@aboff.com" class="contact-email">michael@aboff.com</a>
         </div>
         <div class="btn-group">
-            <a href="https://www.linkedin.com/in/mwaboff/" class="btn" target="_blank">LinkedIn · @mwaboff</a>
-            <a href="https://github.com/mwaboff" class="btn" target="_blank">GitHub · @mwaboff</a>
+            <a href="https://www.linkedin.com/in/mwaboff/" class="btn" target="_blank" rel="noopener">LinkedIn</a>
+            <a href="https://github.com/mwaboff" class="btn" target="_blank" rel="noopener">GitHub</a>
         </div>
     </section>
 </main>
